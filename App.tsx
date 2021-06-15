@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type {Node} from 'react';
+import {Constants} from 'react-native-unimodules';
 import {
   SafeAreaView,
   ScrollView,
@@ -55,6 +56,11 @@ const Section = ({children, title}): Node => {
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  console.log(
+    'verify installation is successful is to log a value from',
+    Constants.systemFonts,
+  );
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -71,8 +77,8 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
+            Edit asdas<Text style={styles.highlight}>App.js</Text> to change
+            this screen and then come back to see your edits.
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
