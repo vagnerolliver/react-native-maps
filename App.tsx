@@ -6,9 +6,11 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {Constants} from 'react-native-unimodules';
+import * as Location from 'expo-location';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -56,9 +58,24 @@ const Section = ({children, title}): Node => {
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  useEffect(() => {
+    (async () => {
+      let {status} = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        // setErrorMsg('Permission to access location was denied');
+        console.log('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      // setLocation(location);
+      console.log('location', location);
+    })();
+  }, []);
+
   console.log(
     'verify installation is successful is to log a value from',
-    Constants.systemFonts,
+    // Constants.systemFonts,
   );
 
   const backgroundStyle = {
